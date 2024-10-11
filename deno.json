@@ -1,6 +1,6 @@
 {
   "name": "@sushantrahate/unified-response",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A package for creating a unified response structure for backend APIs.",
   "exports": "./mod.ts",
   "license": "MIT",

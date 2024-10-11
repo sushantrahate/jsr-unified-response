@@ -8,13 +8,18 @@ interface CustomResponseFields {
   customField4?: string; // Optional field
 }
 
+Deno.test('Simple response', () => {
+  const response = createResponse(true);
+
+  // Assertions
+  assertEquals(response.success, true);
+  assertEquals(response.statusCode, 200);
+});
+
 Deno.test('createResponse should return the correct structure', () => {
-  const response = createResponse(
-    true,
-    { user: 'John Doe' },
-    'Request was successful',
-    200
-  );
+  const response = createResponse(true, 200, 'Request was successful', {
+    user: 'John Doe',
+  });
 
   // Assertions
   assertEquals(response.success, true);
@@ -28,9 +33,9 @@ Deno.test(
   () => {
     const response = createResponse<CustomResponseFields>(
       true,
-      { user: 'John Doe' },
-      'Success',
       200,
+      'Success',
+      { user: 'John Doe' },
       null,
       null,
       {

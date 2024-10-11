@@ -29,9 +29,9 @@
  * /*
  * {
  *   success: true,
- *   data: { user: 'John Doe' },
- *   message: 'Request was successful',
  *   statusCode: 200,
+ *   message: 'Request was successful',
+ *   data: { user: 'John Doe' },
  *   error: null,
  *   metadata: null,
  *   timestamp: '2024-04-27T12:34:56.789Z',
@@ -64,9 +64,9 @@
  * /*
  * {
  *   success: true,
- *   data: { user: 'Jane Doe' },
- *   message: 'Request was successful',
  *   statusCode: 200,
+ *   message: 'Request was successful',
+ *   data: { user: 'Jane Doe' },
  *   error: null,
  *   metadata: null,
  *   timestamp: '2024-04-27T12:34:56.789Z',
@@ -85,20 +85,20 @@ export interface Response<T = Record<string, unknown>> {
   /** Indicates if the request was successful */
   success: boolean;
 
-  /** The data returned by the API */
-  data: object | null;
+  /** The HTTP status code */
+  statusCode: number;
 
   /** A message describing the result */
   message: string;
 
-  /** The HTTP status code */
-  statusCode: number;
+  /** The data returned by the API */
+  data?: object | null;
 
   /** Any error information if the request failed */
-  error: object | null;
+  error?: object | null;
 
   /** Additional metadata related to the response */
-  metadata: object | null;
+  metadata?: object | null;
 
   /** ISO timestamp of when the response was created */
   timestamp: string;
@@ -113,9 +113,9 @@ export interface Response<T = Record<string, unknown>> {
  * @template T - The type of the additional custom fields.
  *
  * @param success - Indicates if the request was successful.
- * @param data - The data returned by the API.
- * @param message - A message describing the result.
  * @param statusCode - The HTTP status code.
+ * @param message - A message describing the result.
+ * @param data - The data returned by the API.
  * @param error - Any error information if the request failed.
  * @param metadata - Additional metadata related to the response.
  * @param extraFields - Any additional custom fields to include in the response.
@@ -124,21 +124,25 @@ export interface Response<T = Record<string, unknown>> {
  */
 export const createResponse = <T = Record<string, unknown>>(
   success: boolean,
-  data: object | null = null,
-  message: string = success ? 'Request was successful' : 'An error occurred',
   statusCode: number = success ? 200 : 400,
+  message: string = success ? 'Request was successful' : 'An error occurred',
+  data: object | null = null,
   error: object | null = null,
   metadata: object | null = null,
   extraFields: T = {} as T
 ): Response<T> => {
-  return {
+  const response: Response<T> = {
     success,
-    data,
-    message,
     statusCode,
-    error,
-    metadata,
+    message,
     timestamp: new Date().toISOString(),
-    extraFields,
   };
+
+  if (data !== null && data !== undefined) response.data = data;
+  if (error) response.error = error;
+  if (metadata) response.metadata = metadata;
+  if (extraFields && Object.keys(extraFields).length > 0)
+    response.extraFields = extraFields;
+
+  return response;
 };

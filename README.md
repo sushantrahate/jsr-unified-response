@@ -19,12 +19,9 @@ import { createResponse } from '@sushantrahate/unified-response';
 
 ```typescript
 // Basic
-const response = createResponse(
-  true,
-  { user: 'John Doe' },
-  'Request was successful',
-  200
-);
+const response = createResponse(true, 200, 'Request was successful', {
+  user: 'John Doe',
+});
 
 // Output
 console.log(response);
@@ -42,9 +39,9 @@ interface CustomResponseFields {
 // Creating a response with custom fields
 const responseWithCustomFields = createResponse<CustomResponseFields>(
   true,
-  { user: 'Jane Doe' },
-  'Request was successful',
   200,
+  'Request was successful',
+  { user: 'Jane Doe' },
   null,
   null,
   {
