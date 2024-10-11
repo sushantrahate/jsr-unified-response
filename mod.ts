@@ -16,7 +16,7 @@
  * ### Without Custom Fields
  *
  * ```typescript
- * import { createResponse } from "https://your-package-url/main.ts";
+ * import { createResponse } from "@sushantrahate/unified-response";
  *
  * const response = createResponse(
  *   true,
@@ -43,7 +43,7 @@
  * ### With Custom Fields
  *
  * ```typescript
- * import { createResponse } from "https://your-package-url/main.ts";
+ * import { createResponse } from "@sushantrahate/unified-response";
  *
  * interface CustomFields {
  *   userId: number;

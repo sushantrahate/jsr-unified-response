@@ -12,7 +12,7 @@ A package that provides a consistent response structure for backend APIs, allowi
 ## Import
 
 ```typescript
-import { createResponse } from 'https://your-package-url/unified-response.ts';
+import { createResponse } from '@sushantrahate/unified-response';
 ```
 
 ## Use
