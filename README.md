@@ -9,6 +9,10 @@ A package that provides a consistent response structure for backend APIs, allowi
 - Automatically includes a timestamp for logging and tracking.
 - Supports both successful and error responses.
 
+## Install
+
+[@sushantrahate/unified-response](https://jsr.io/@sushantrahate/unified-response)
+
 ## Import
 
 ```typescript
@@ -69,3 +73,5 @@ interface Response<T = Record<string, unknown>> {
   extraFields?: T; // Generic type for extra fields
 }
 ```
+
+If you liked it then please show your love by ⭐ the repo
