@@ -13,6 +13,23 @@ A package that provides a consistent response structure for backend APIs, allowi
 
 [@sushantrahate/unified-response](https://jsr.io/@sushantrahate/unified-response)
 
+```bash
+# Deno >= 2.x.x
+deno add jsr:@sushantrahate/unified-response
+
+# Node.js with ESM
+npx jsr add @sushantrahate/unified-response
+
+# Bun
+bunx jsr add @sushantrahate/unified-response
+
+# Yarn
+yarn dlx jsr add @sushantrahate/unified-response
+
+# pnpm
+pnpm dlx jsr add @nshiab/simple-data-analysis
+```
+
 ## Import
 
 ```typescript
